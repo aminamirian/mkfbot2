@@ -58,7 +58,7 @@ local function description_rules(msg, nama)
          rules = data[tostring(msg.to.id)]["rules"]
          rules = "\nRules :\n"..rules.."\n"
       end
-      local sambutan = "hi "..nama.." welcome to ["..string.gsub(msg.to.print_name, "_", " ").."]"
+      local sambutan = ""
       local text = sambutan..about..rules.."\n"
       local receiver = get_receiver(msg)
       send_large_msg(receiver, text, ok_cb, false)
@@ -67,7 +67,7 @@ end
 
 local function run(msg, matches)
    if not msg.service then
-      return "Are you trying to troll me?"
+      return ""
    end
    --vardump(msg)
    if matches[1] == "chat_add_user" then
@@ -88,7 +88,7 @@ local function run(msg, matches)
       description_rules(msg, nama)
    elseif matches[1] == "chat_del_user" then
        local bye_name = "@"..msg.action.user.username
-       return 'goodbye '..bye_name..'☻' 
+       return '' 
    end
 end
 
